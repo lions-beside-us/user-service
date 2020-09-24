@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/fetcher', {
+mongoose.connect('mongodb://localhost/user', {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 
 const db = mongoose.connection;
@@ -10,6 +11,10 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function() {
   console.log('mongodb connected!')
+});
+
+db.dropCollection("users", (err, result) =>  {
+  console.log("Collection dropped");
 });
 
 const userSchema = new mongoose.Schema({
@@ -42,6 +47,7 @@ let saveUser = (user) => {
 
   newUser.save((err, newUser) => {
     if (err) return console.error('save error: ', err);
-  })
-
+  });
 }
+
+module.exports.saveUser = saveUser;
