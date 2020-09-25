@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/user', {
+mongoose.connect('mongodb://localhost/fec-soundcloud', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true

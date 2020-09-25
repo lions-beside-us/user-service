@@ -53,7 +53,8 @@ const userData = [
 let seedData = (data) => {
   data.forEach(user => {
     userDb.saveUser(user);
-    console.log(`${user} added!`);
+    console.log(`${user.user_name} added!`);
+
   });
 }
 
