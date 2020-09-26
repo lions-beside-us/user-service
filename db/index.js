@@ -46,15 +46,6 @@ let saveUser = (user) => {
   });
 
   return newUser.save(newUser);
-
-  // console.log(`here is the db console ${tempUser}`);
-  // .then(user => console.log(`${user.user_name} added!`))
-  // .catch(error => console.error(error.message));
 }
 
 module.exports.saveUser = saveUser;
-
-// var tempUser = newUser.save((err, newUser) => {
-//   if (err) return console.error('save error: ', err)
-//   // return newUser;
-// });
