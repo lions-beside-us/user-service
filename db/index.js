@@ -13,9 +13,9 @@ db.once('open', function() {
   console.log('mongodb connected!')
 });
 
-db.dropCollection("users", (err, result) =>  {
-  console.log("Collection dropped");
-});
+// db.dropCollection("users", (err, result) =>  {
+//   console.log("Collection dropped");
+// });
 
 const userSchema = new mongoose.Schema({
   user_id: {
@@ -48,4 +48,14 @@ let saveUser = (user) => {
   return newUser.save(newUser);
 }
 
+const getUsers = () => {
+  return User.find();
+}
+
+const getUser = (user_id) => {
+  return User.find({ user_id });
+}
+
+module.exports.getUsers = getUsers;
+module.exports.getUser = getUser;
 module.exports.saveUser = saveUser;
