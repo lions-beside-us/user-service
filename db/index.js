@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/fec-soundcloud', {
+mongoose.connect('mongodb://localhost/fec-soundcloud-users', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -13,9 +13,9 @@ db.once('open', function() {
   console.log('mongodb connected!')
 });
 
-db.dropCollection("users", (err, result) =>  {
-  console.log("Collection dropped");
-});
+// db.dropCollection("users", (err, result) =>  {
+//   console.log("Collection dropped");
+// });
 
 const userSchema = new mongoose.Schema({
   user_id: {
@@ -46,15 +46,16 @@ let saveUser = (user) => {
   });
 
   return newUser.save(newUser);
-
-  // console.log(`here is the db console ${tempUser}`);
-  // .then(user => console.log(`${user.user_name} added!`))
-  // .catch(error => console.error(error.message));
 }
 
-module.exports.saveUser = saveUser;
+const getUsers = () => {
+  return User.find();
+}
 
-// var tempUser = newUser.save((err, newUser) => {
-//   if (err) return console.error('save error: ', err)
-//   // return newUser;
-// });
+const getUser = (user_id) => {
+  return User.find({ user_id });
+}
+
+module.exports.getUsers = getUsers;
+module.exports.getUser = getUser;
+module.exports.saveUser = saveUser;
