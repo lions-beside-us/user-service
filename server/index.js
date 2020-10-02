@@ -33,6 +33,13 @@ app.get('/users/:id', async(req, res) => {
 
     const user = await db.getUser(id);
 
+    if ( user.length === 0 ) {
+      return res.status(400).send({
+        success: false,
+        msg: `no user with id ${id}`
+      });
+    }
+
     res.status(200).send({
       success: true,
       data: user
@@ -49,3 +56,5 @@ app.get('/users/:id', async(req, res) => {
 app.listen(port, () => {
   console.log(`server running on port ${port}`);
 });
+
+module.exports = app;
