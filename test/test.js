@@ -22,7 +22,7 @@ describe('/GET users', () => {
 });
 
 describe('/GET user', () => {
-  it('it should GET one user for with ID 1', (done) => {
+  it('it should GET one user with ID 1', (done) => {
     chai.request(app)
         .get('/users/1')
         .end((err, res) => {
@@ -31,6 +31,17 @@ describe('/GET user', () => {
               res.body.data.length.should.equal(1);
               res.body.data[0].user_name.length.should.be.gte(3);
               res.body.data[0].user_name.should.be.a('string');
+          done();
+        });
+  });
+
+  it('it should not GET one user with ID 11', (done) => {
+    chai.request(app)
+        .get('/users/11')
+        .end((err, res) => {
+              res.should.have.status(400);
+              res.body.msg.should.be.a('string');
+              res.body.msg.should.equal('no user with id 11');
           done();
         });
   });
