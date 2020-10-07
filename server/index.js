@@ -33,6 +33,13 @@ app.get('/users/:id', async(req, res) => {
 
     const user = await db.getUser(id);
 
+    if (!user) {
+      res.status(400).json({
+        succes: false,
+        msg: error
+      });
+    }
+
     if ( user.length === 0 ) {
       return res.status(400).send({
         success: false,

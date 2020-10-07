@@ -49,7 +49,7 @@ let saveUser = (user) => {
 }
 
 const getUsers = () => {
-  return User.find();
+  return User.find().limit(100);
 }
 
 const getUser = (user_id) => {
