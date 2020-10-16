@@ -2,11 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const db = require('../db/index');
+const path = require('path');
 
 const port = 4002;
 
 const app = express();
 
+app.use(express.static('./dist'));
 app.use(express.json());
 app.use(cors());
 
@@ -58,6 +60,11 @@ app.get('/users/:id', async(req, res) => {
       msg: error
     });
   }
+});
+
+app.get('/:current', (req, res) => {
+  console.log('hit');
+  res.sendFile(path.join(__dirname,'../dist/index.html'));
 });
 
 app.listen(port, () => {
