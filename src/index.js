@@ -36,7 +36,8 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getUser(1);
+    let userId = window.location.pathname.substring(1);
+    this.getUser(userId);
   }
 
   render() {
