@@ -5,8 +5,8 @@ import styled from 'styled-components';
 
 const TolyUserImage = styled.img`
   border-radius: 50%;
-  max-width: 7%;
-  height: auto;
+  height: 40px;
+  width: 40px;
 `;
 
 const TolyUserComment = styled.span`
@@ -49,7 +49,7 @@ class App extends React.Component {
             <React.Fragment key={user.user_id}>
               <div>
                 <TolyUserImage src={(user.profile_image_url) ? user.profile_image_url : placeHolderImage}></TolyUserImage>
-                <TolyUserComment>{user.user_name}</TolyUserComment>
+                {/* <TolyUserComment>{user.user_name}</TolyUserComment> */}
               </div>
             </React.Fragment>
           )
