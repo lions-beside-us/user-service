@@ -9,11 +9,6 @@ const TolyUserImage = styled.img`
   width: 40px;
 `;
 
-const TolyUserComment = styled.span`
-  border: none;
-  color: #C0C0C0;
-`;
-
 let placeHolderImage = 'https://yt3.ggpht.com/a/AATXAJycfNAroKweTFE4WgBWSK4Gq3Q7_cpPu4WUl0p_wg=s900-c-k-c0xffffffff-no-rj-mo';
 
 class App extends React.Component {
@@ -26,7 +21,7 @@ class App extends React.Component {
   }
 
   getUser(id) {
-    axios.get(`http://localhost:4002/users/${id}`)
+    axios.get(`/users/${id}`)
       .then(response => {
         const users = response.data.data;
         this.setState({
@@ -49,7 +44,6 @@ class App extends React.Component {
             <React.Fragment key={user.user_id}>
               <div>
                 <TolyUserImage src={(user.profile_image_url) ? user.profile_image_url : placeHolderImage}></TolyUserImage>
-                {/* <TolyUserComment>{user.user_name}</TolyUserComment> */}
               </div>
             </React.Fragment>
           )
